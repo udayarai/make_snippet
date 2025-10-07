@@ -1,11 +1,12 @@
 # {{PROBLEM}} Function Design Recipe
 
-Copy this into a `recipe.md` in your project and fill it out.
+A function called count words that takes a string as an argument and returns the number of words in that string.
+
 
 ## 1. Describe the Problem
 
 ```
-A function called make_snippet that takes a string as an argument and returns the first five words and then a '...' if there are more than that.
+count words needs to take in a string as an argument and return the number of words in that string
 ```
 
 ## 2. Design the Function Signature
@@ -14,19 +15,19 @@ _Include the name of the function, its parameters, return value, and side effect
 
 ```python
 
-def make_snippet(string):
-    """takes a string as argument and returns the first five words and then a '...'
+def count_words(string):
+    """takes a string as argument and returns the number of words in the string
 
     Parameters: (list all parameters and their types)
         string: a string containing words (e.g. "hello WORLD is my name and I am happy")
 
     Returns: (state the return value and its type)
-        first five words and then a '...' (e.g. ["hello WORLD is my name..."])
+        returns the number of words (e.g. string "hello WORLD is my name and I am happy" will return 9)
 
     Side effects: (state any side effects)
         This function doesn't print anything or have any other side-effects
     """
-    pass # Test-driving means _not_ writing any code here yet.
+    
 ```
 
 ## 3. Create Examples as Tests
@@ -37,24 +38,29 @@ _Make a list of examples of what the function will take and return._
 # EXAMPLE
 """
 given an empty string
-returns empty string
+returns number of words
 """
-make_snippet("") => ""
+count_words("") => 0
 
 
 """
 given fewer than five words
-returns all words
+returns number of words
 """
-make_snippet("Hello world") => "Hello world"
+count_words("Hello world") => 2
 
 
 """
 given more than five words 
-returns five words and ...
+returns the length
 """
-make_snippet("Hello my name is John and I am happy") => "Hello my name is John..."
+count_words("Hello my name is John and I am happy") => 9
 
+"""
+given numbers seperated by spaces
+returns the length
+"""
+count_words("1234 4343 3432") => 3
 ```
 
 
@@ -67,35 +73,44 @@ Here's an example for you to start with:
 ```python
 # EXAMPLE
 
-from lib.make_snippet import *
+from lib.count_words import *
 
 
 """
 given an empty string
-returns empty string
+returns number of words
 """
 def test_with_empty_string():
-    actual = make_snippet("")
-    expected = ""
+    actual = count_words("")
+    expected = 0
     assert actual == expected
 
 """
 given fewer than five words
-returns all words
+returns number of words
 """
 def test_with_words_fewer_than_five_words():
-    actual = make_snippet("Hello world")
-    expected ="Hello world"
+    actual = count_words("Hello world")
+    expected = 2
     assert actual == expected
 
 
 """
 given more than five words 
-returns five words and ...
+returns number of words
 """
 def test_with_words_more_than_five_words():
-    actual = make_snippet("Hello my name is John and I am happy") 
-    expected = "Hello my name is John..."
+    actual = count_words("Hello my name is John and I am happy") 
+    expected = 9
+    assert actual == expected
+
+"""
+given numbers seperated by spaces
+returns the length
+"""
+def test_with_numbers_seperated_by_spaces():
+    actual = count_words("1234 4343 3432") 
+    expected = 3
     assert actual == expected
 ```
 
